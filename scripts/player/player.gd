@@ -1,10 +1,11 @@
 extends CharacterBody3D
-## Player Controller - Movimento básico em 3D
+## Player Controller - Movimento e combate
 ##
-## Controlador simples para protótipo:
+## Controlador do personagem:
 ## - WASD para movimento
 ## - Space para pular
 ## - Mouse para rotação da câmera
+## - Botão esquerdo do mouse para atacar
 
 const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
@@ -12,13 +13,21 @@ const MOUSE_SENSITIVITY := 0.002
 
 @onready var camera_pivot: Node3D = $CameraPivot
 @onready var camera: Camera3D = $CameraPivot/Camera3D
+@onready var combat: CombatComponent = $CombatComponent
+@onready var stats: StatsComponent = $StatsComponent
+@onready var mesh: MeshInstance3D = $MeshInstance3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var hit_flash_timer: float = 0.0
 
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	GameManager.player = self
+	
+	if stats:
+		stats.damaged.connect(_on_damaged)
+		stats.died.connect(_on_died)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -29,9 +38,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED
+	
+	if event.is_action_pressed("attack") and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if combat:
+			combat.try_attack()
+
+
+func _process(delta: float) -> void:
+	if hit_flash_timer > 0:
+		hit_flash_timer -= delta
+		if hit_flash_timer <= 0 and mesh:
+			_reset_material()
 
 
 func _physics_process(delta: float) -> void:
+	if not stats or not stats.is_alive:
+		return
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	
@@ -49,3 +72,26 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+
+
+func _on_damaged(_amount: float, _type: StringName) -> void:
+	_flash_red()
+
+
+func _on_died() -> void:
+	print("Player morreu!")
+
+
+func _flash_red() -> void:
+	if not mesh:
+		return
+	
+	var material := StandardMaterial3D.new()
+	material.albedo_color = Color(1, 0.3, 0.3)
+	mesh.set_surface_override_material(0, material)
+	hit_flash_timer = 0.15
+
+
+func _reset_material() -> void:
+	if mesh:
+		mesh.set_surface_override_material(0, null)
