@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://cqg7m5nf0hnvl"]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_data.gd" id="1_itemdata"]
+
+[resource]
+script = ExtResource("1_itemdata")
+item_name = "Pão Ressecado"
+description = "Um pedaço de pão velho mas ainda comestível."
+icon_path = ""
+max_stack = 10
+is_consumable = true
+is_equippable = false
+heal_amount = 10.0
+stamina_restore = 0.0
+hunger_restore = 30.0
+thirst_restore = 0.0

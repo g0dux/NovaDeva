@@ -1,11 +1,13 @@
 extends CharacterBody3D
-## Player Controller - Movimento e combate
+## Player Controller - Movimento, combate, inventário e sobrevivência
 ##
-## Controlador do personagem:
+## Controlador completo do personagem:
 ## - WASD para movimento
 ## - Space para pular
 ## - Mouse para rotação da câmera
 ## - Botão esquerdo do mouse para atacar
+## - E para interagir
+## - I para abrir inventário
 
 const SPEED := 5.0
 const JUMP_VELOCITY := 4.5
@@ -15,6 +17,8 @@ const MOUSE_SENSITIVITY := 0.002
 @onready var camera: Camera3D = $CameraPivot/Camera3D
 @onready var combat: CombatComponent = $CombatComponent
 @onready var stats: StatsComponent = $StatsComponent
+@onready var inventory: InventoryComponent = $InventoryComponent
+@onready var survival: SurvivalComponent = $SurvivalComponent
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -28,6 +32,9 @@ func _ready() -> void:
 	if stats:
 		stats.damaged.connect(_on_damaged)
 		stats.died.connect(_on_died)
+	
+	if inventory:
+		inventory.item_used.connect(_on_item_used)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -80,6 +87,22 @@ func _on_damaged(_amount: float, _type: StringName) -> void:
 
 func _on_died() -> void:
 	print("Player morreu!")
+
+
+func _on_item_used(item: ItemData) -> void:
+	print("Usando item: %s" % item.item_name)
+	
+	if stats:
+		if item.heal_amount > 0:
+			stats.heal(item.heal_amount)
+		if item.stamina_restore > 0:
+			stats.restore_stamina(item.stamina_restore)
+	
+	if survival:
+		if item.hunger_restore > 0:
+			survival.restore_hunger(item.hunger_restore)
+		if item.thirst_restore > 0:
+			survival.restore_thirst(item.thirst_restore)
 
 
 func _flash_red() -> void:

@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bav4mmqcfhwqq"]
+[gd_scene load_steps=13 format=3 uid="uid://bav4mmqcfhwqq"]
 
 [ext_resource type="PackedScene" uid="uid://c7xdfxhq7qhwr" path="res://scenes/player/player.tscn" id="1_nx8xq"]
-[ext_resource type="PackedScene" uid="uid://dtwy7j4rq5k2x" path="res://scenes/ui/combat_hud.tscn" id="2_combat_hud"]
+[ext_resource type="PackedScene" uid="uid://bxhn7ksy0t2ku" path="res://scenes/ui/full_hud.tscn" id="2_fullhud"]
 [ext_resource type="PackedScene" uid="uid://b7yk3m8qghj5n" path="res://scenes/enemy/asura_grunt.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://cymmb4hxbmirb" path="res://scenes/items/item_pickup.tscn" id="4_pickup"]
+[ext_resource type="Resource" uid="uid://drp1ckkj6xh1t" path="res://data/items/healing_potion.tres" id="5_potion"]
+[ext_resource type="Resource" uid="uid://cqg7m5nf0hnvl" path="res://data/items/bread.tres" id="6_bread"]
+[ext_resource type="Resource" uid="uid://c2ylh3kwfwskh" path="res://data/items/water.tres" id="7_water"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sj3m7"]
 sky_top_color = Color(0.385, 0.454, 0.55, 1)
@@ -85,4 +89,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
 [node name="AsuraGrunt3" parent="Enemies" instance=ExtResource("3_enemy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
 
-[node name="CombatHUD" parent="." instance=ExtResource("2_combat_hud")]
+[node name="Items" type="Node3D" parent="."]
+
+[node name="Potion1" parent="Items" instance=ExtResource("4_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
+item_data = ExtResource("5_potion")
+quantity = 2
+
+[node name="Bread1" parent="Items" instance=ExtResource("4_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+item_data = ExtResource("6_bread")
+quantity = 3
+
+[node name="Water1" parent="Items" instance=ExtResource("4_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+item_data = ExtResource("7_water")
+quantity = 2
+
+[node name="FullHUD" parent="." instance=ExtResource("2_fullhud")]

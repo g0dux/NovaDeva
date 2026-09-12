@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://c2ylh3kwfwskh"]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_data.gd" id="1_itemdata"]
+
+[resource]
+script = ExtResource("1_itemdata")
+item_name = "Cantil de Água"
+description = "Água limpa em um cantil de couro."
+icon_path = ""
+max_stack = 5
+is_consumable = true
+is_equippable = false
+heal_amount = 0.0
+stamina_restore = 10.0
+hunger_restore = 0.0
+thirst_restore = 50.0
