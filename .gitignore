@@ -1,0 +1,30 @@
+# Godot 4+
+.godot/
+*.uid
+*.translation
+
+# Exports
+export/
+builds/
+*.exe
+*.pck
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / local
+.vscode/
+.idea/
+*.tmp
+
+# Blender backups
+*.blend1
+*.blend2
+
+# Secrets
+.env
+.env.*
+credentials.json
