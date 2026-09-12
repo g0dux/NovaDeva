@@ -27,7 +27,6 @@ RPG de ação em mundo aberto para **Godot 4.x**: sobrevivência estilo [Outward
 - **Espaço** - Pular
 - **Mouse** - Rotacionar câmera
 - **ESC** - Alternar captura do mouse (liberar/capturar cursor)
-- **Enter** - Pausar/Despausar
 
 ## 📁 Estrutura do Projeto
 
@@ -83,7 +82,6 @@ RPG de ação em mundo aberto para **Godot 4.x**: sobrevivência estilo [Outward
   - Instruções de controle
   - Indicador de estado
 - Cena de teste com plataformas
-- Sistema de pause
 - Ambiente 3D básico (skybox, iluminação)
 
 ### 🔜 Próximos Passos

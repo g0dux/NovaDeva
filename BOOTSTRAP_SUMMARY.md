@@ -26,8 +26,7 @@ O projeto Nova Deva agora possui um projeto Godot 4 completo, funcional e jogáv
 
 ### ✅ Sistema de Jogo
 - [x] GameManager (autoload) para estado global
-- [x] Sistema de pause (Enter)
-- [x] Controle de estado (MENU/PLAYING/PAUSED/LOADING)
+- [x] Controle de estado (MENU/PLAYING/LOADING)
 
 ### ✅ Player
 - [x] Movimento 3D (WASD)
@@ -78,7 +77,6 @@ O projeto Nova Deva agora possui um projeto Godot 4 completo, funcional e jogáv
 # - Space: Pular  
 # - Mouse: Câmera
 # - ESC: Liberar cursor
-# - Enter: Pausar
 ```
 
 ## 🚀 Base Técnica Criada

@@ -72,7 +72,7 @@ NovaDeva/
 | **Player Movement** | ✅ | WASD para movimento 3D fluido |
 | **Jump System** | ✅ | Pulo com física realista |
 | **Camera Control** | ✅ | Terceira pessoa com mouse |
-| **Game Manager** | ✅ | Estado global e sistema de pause |
+| **Game Manager** | ✅ | Estado global do jogo |
 | **HUD** | ✅ | Interface básica com título e info |
 | **Test Environment** | ✅ | Ambiente 3D com plataformas |
 
@@ -86,7 +86,6 @@ NovaDeva/
 
 ⚙️ SYSTEM
    ESC        → Release/capture mouse cursor
-   Enter      → Pause/unpause game
 ```
 
 ## 🏗️ Architecture Overview
@@ -97,7 +96,6 @@ NovaDeva/
 # GameManager é acessível globalmente
 GameManager.current_state    # Estado do jogo
 GameManager.player           # Referência ao player
-GameManager.toggle_pause()   # Pausar/despausar
 ```
 
 ### Signal-Based Events
@@ -110,7 +108,6 @@ GameManager.game_state_changed.connect(_on_state_changed)
 enum GameState {
     MENU,     # Menu inicial
     PLAYING,  # Jogando
-    PAUSED,   # Pausado
     LOADING   # Carregando
 }
 ```

@@ -31,7 +31,7 @@ text = "NOVA DEVA"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 20
-text = "WASD - Movimento | Espaço - Pular | ESC - Mouse | Enter - Pausar"
+text = "WASD - Movimento | Espaço - Pular | ESC - Mouse"
 
 [node name="TopRight" type="MarginContainer" parent="."]
 anchors_preset = 1

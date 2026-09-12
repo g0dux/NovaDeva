@@ -26,7 +26,5 @@ func _update_state_display(state: GameManager.GameState) -> void:
 			state_label.text = "[MENU]"
 		GameManager.GameState.PLAYING:
 			state_label.text = "[JOGANDO]"
-		GameManager.GameState.PAUSED:
-			state_label.text = "[PAUSADO]"
 		GameManager.GameState.LOADING:
 			state_label.text = "[CARREGANDO]"

@@ -33,8 +33,7 @@
 ### 🔧 Funcionalidades
 
 #### GameManager (Autoload)
-- [x] Estados: MENU, PLAYING, PAUSED, LOADING
-- [x] Sistema de pause funcional
+- [x] Estados: MENU, PLAYING, LOADING
 - [x] Signal: game_state_changed
 - [x] Referência global ao player
 
@@ -69,7 +68,6 @@
 - [x] `move_left` → A
 - [x] `move_right` → D
 - [x] `jump` → Space
-- [x] `ui_pause` → Enter
 - [x] `ui_cancel` → ESC (padrão Godot)
 
 ### 📝 Qualidade de Código
