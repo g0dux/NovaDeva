@@ -4,12 +4,16 @@ RPG de ação em mundo aberto para **Godot 4.x**: sobrevivência estilo [Outward
 
 ## 🎮 Projeto Jogável
 
-**O projeto Godot está configurado e funcional!** 
+**O projeto Godot está configurado e funcional com combate corpo a corpo!** 
 
 Para rodar o jogo:
 1. Abra este repositório no Godot Engine 4.3+
 2. Pressione F5 ou clique em Play
-3. Veja [PROJETO_GODOT.md](PROJETO_GODOT.md) para detalhes completos
+3. Use **WASD** para mover, **Espaço** para pular, **Clique Esquerdo** para atacar
+
+**Documentação de jogabilidade:**
+- [PROJETO_GODOT.md](PROJETO_GODOT.md) - Como jogar e estrutura
+- [COMBAT_SYSTEM.md](COMBAT_SYSTEM.md) - Sistema de combate implementado
 
 ## 📖 Documentação
 
