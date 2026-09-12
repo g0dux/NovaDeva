@@ -2,9 +2,16 @@
 
 RPG de ação em mundo aberto para **Godot 4.x**: sobrevivência estilo [Outward](https://www.outwardgame.com/), combate soulslike e um mundo fantástico mais macabro — Devas na superfície, Asuras no subsolo.
 
-O projeto ainda está na fase de documentação e direção de arte. O ponto de entrada é a pasta `docs/`.
+## 🎮 Projeto Jogável
 
-## Documentação
+**O projeto Godot está configurado e funcional!** 
+
+Para rodar o jogo:
+1. Abra este repositório no Godot Engine 4.3+
+2. Pressione F5 ou clique em Play
+3. Veja [PROJETO_GODOT.md](PROJETO_GODOT.md) para detalhes completos
+
+## 📖 Documentação
 
 - [Índice completo](docs/README.md)
 - [GDD — visão geral](docs/01-visao-geral/gdd-visao-geral.md)
