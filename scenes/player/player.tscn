@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7xdfxhq7qhwr"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_k8jmv"]
+[ext_resource type="Script" path="res://scripts/combat/stats_component.gd" id="2_stats"]
+[ext_resource type="Script" path="res://scripts/combat/combat_component.gd" id="3_combat"]
+[ext_resource type="Script" path="res://scripts/inventory/inventory_component.gd" id="5_inventory"]
+[ext_resource type="Script" path="res://scripts/survival/survival_component.gd" id="6_survival"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w3y2j"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xbkwn"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_k8jmv")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("2_stats")
+max_health = 100.0
+max_stamina = 100.0
+
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource("5_inventory")
+slot_count = 20
+
+[node name="SurvivalComponent" type="Node" parent="."]
+script = ExtResource("6_survival")
+
+[node name="CombatComponent" type="Node" parent="."]
+script = ExtResource("3_combat")
+attack_damage = 25.0
+attack_stamina_cost = 15.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_w3y2j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_xbkwn")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3)
+
+[node name="PlayerHurtbox" type="Area3D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerHurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_w3y2j")

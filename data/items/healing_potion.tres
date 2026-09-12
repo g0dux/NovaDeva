@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=2 format=3 uid="uid://drp1ckkj6xh1t"]
+
+[ext_resource type="Script" path="res://scripts/inventory/item_data.gd" id="1_itemdata"]
+
+[resource]
+script = ExtResource("1_itemdata")
+item_name = "Poção de Cura"
+description = "Uma poção alquímica que restaura vitalidade."
+icon_path = ""
+max_stack = 5
+is_consumable = true
+is_equippable = false
+heal_amount = 40.0
+stamina_restore = 20.0
+hunger_restore = 0.0
+thirst_restore = 0.0

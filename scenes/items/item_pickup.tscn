@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cymmb4hxbmirb"]
+
+[ext_resource type="Script" path="res://scripts/items/item_pickup.gd" id="1_pickup"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pickup"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pickup"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[node name="ItemPickup" type="Area3D"]
+collision_layer = 2048
+collision_mask = 2
+script = ExtResource("1_pickup")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_pickup")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_pickup")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+pixel_size = 0.01
+billboard = 1
+text = "Item"

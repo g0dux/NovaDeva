@@ -1,0 +1,109 @@
+[gd_scene load_steps=13 format=3 uid="uid://bav4mmqcfhwqq"]
+
+[ext_resource type="PackedScene" uid="uid://c7xdfxhq7qhwr" path="res://scenes/player/player.tscn" id="1_nx8xq"]
+[ext_resource type="PackedScene" uid="uid://bxhn7ksy0t2ku" path="res://scenes/ui/full_hud.tscn" id="2_fullhud"]
+[ext_resource type="PackedScene" uid="uid://b7yk3m8qghj5n" path="res://scenes/enemy/asura_grunt.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" uid="uid://cymmb4hxbmirb" path="res://scenes/items/item_pickup.tscn" id="4_pickup"]
+[ext_resource type="Resource" uid="uid://drp1ckkj6xh1t" path="res://data/items/healing_potion.tres" id="5_potion"]
+[ext_resource type="Resource" uid="uid://cqg7m5nf0hnvl" path="res://data/items/bread.tres" id="6_bread"]
+[ext_resource type="Resource" uid="uid://c2ylh3kwfwskh" path="res://data/items/water.tres" id="7_water"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sj3m7"]
+sky_top_color = Color(0.385, 0.454, 0.55, 1)
+sky_horizon_color = Color(0.646, 0.656, 0.67, 1)
+ground_bottom_color = Color(0.2, 0.169, 0.133, 1)
+ground_horizon_color = Color(0.646, 0.656, 0.67, 1)
+
+[sub_resource type="Sky" id="Sky_fhyvn"]
+sky_material = SubResource("ProceduralSkyMaterial_sj3m7")
+
+[sub_resource type="Environment" id="Environment_02oij"]
+background_mode = 2
+sky = SubResource("Sky_fhyvn")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_new"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ground"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_small"]
+size = Vector3(3, 0.5, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_platform"]
+size = Vector3(3, 0.5, 3)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_02oij")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, -0.75, 0.433013, 0, 8, 0)
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_new")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_ground")
+
+[node name="TestPlatforms" type="Node3D" parent="."]
+
+[node name="Platform1" type="StaticBody3D" parent="TestPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestPlatforms/Platform1"]
+shape = SubResource("BoxShape3D_small")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestPlatforms/Platform1"]
+mesh = SubResource("BoxMesh_platform")
+
+[node name="Platform2" type="StaticBody3D" parent="TestPlatforms"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.5, 5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestPlatforms/Platform2"]
+shape = SubResource("BoxShape3D_small")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestPlatforms/Platform2"]
+mesh = SubResource("BoxMesh_platform")
+
+[node name="Player" parent="." instance=ExtResource("1_nx8xq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="AsuraGrunt1" parent="Enemies" instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+
+[node name="AsuraGrunt2" parent="Enemies" instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -8)
+
+[node name="AsuraGrunt3" parent="Enemies" instance=ExtResource("3_enemy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -8)
+
+[node name="Items" type="Node3D" parent="."]
+
+[node name="Potion1" parent="Items" instance=ExtResource("4_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
+item_data = ExtResource("5_potion")
+quantity = 2
+
+[node name="Bread1" parent="Items" instance=ExtResource("4_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+item_data = ExtResource("6_bread")
+quantity = 3
+
+[node name="Water1" parent="Items" instance=ExtResource("4_pickup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+item_data = ExtResource("7_water")
+quantity = 2
+
+[node name="FullHUD" parent="." instance=ExtResource("2_fullhud")]

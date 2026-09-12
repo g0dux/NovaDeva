@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs3h3kl7doyva"]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_mjlkc"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_mjlkc")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+theme_override_font_sizes/font_size = 48
+text = "NOVA DEVA"
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 20
+text = "WASD - Movimento | Espaço - Pular | ESC - Mouse"
+
+[node name="TopRight" type="MarginContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_top = 20
+
+[node name="StateLabel" type="Label" parent="TopRight"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_font_sizes/font_size = 24
+text = "[MENU]"
+horizontal_alignment = 2
