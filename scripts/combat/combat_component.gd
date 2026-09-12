@@ -73,40 +73,40 @@ func _enter_attack_active() -> void:
 
 
 func _perform_hitbox_check() -> void:
-	var parent := get_parent() as Node3D
+	var parent: Node3D = get_parent() as Node3D
 	if not parent:
 		return
 	
-	var space_state := parent.get_world_3d().direct_space_state
-	var query := PhysicsShapeQueryParameters3D.new()
+	var space_state: PhysicsDirectSpaceState3D = parent.get_world_3d().direct_space_state
+	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
 	
-	var shape := SphereShape3D.new()
+	var shape: SphereShape3D = SphereShape3D.new()
 	shape.radius = attack_range
 	query.shape = shape
 	
-	var attack_origin := parent.global_position + parent.global_transform.basis.z * -attack_range * 0.5
+	var attack_origin: Vector3 = parent.global_position + parent.global_transform.basis.z * -attack_range * 0.5
 	attack_origin.y += 1.0
 	
 	query.transform = Transform3D(Basis.IDENTITY, attack_origin)
 	query.collision_mask = 0b0000_0000_1000_0000
 	
-	var results := space_state.intersect_shape(query, 10)
+	var results: Array[Dictionary] = space_state.intersect_shape(query, 10)
 	
 	for result in results:
-		var collider := result.collider as Node
+		var collider: Node = result.collider as Node
 		if collider and collider != parent and collider not in hit_targets:
 			_hit_target(collider)
 			hit_targets.append(collider)
 
 
 func _hit_target(target: Node) -> void:
-	var target_parent := target.get_parent()
+	var target_parent: Node = target.get_parent()
 	if not target_parent:
 		return
 	
-	var stats_comp := target_parent.get_node_or_null("StatsComponent") as StatsComponent
+	var stats_comp: StatsComponent = target_parent.get_node_or_null("StatsComponent") as StatsComponent
 	if stats_comp:
-		var damage_info := DamageInfo.new(
+		var damage_info: DamageInfo = DamageInfo.new(
 			attack_damage,
 			&"slash",
 			10.0,

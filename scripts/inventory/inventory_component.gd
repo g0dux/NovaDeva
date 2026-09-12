@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func add_item(item: ItemData, amount: int = 1) -> bool:
-	var remaining := amount
+	var remaining: int = amount
 	
 	for slot in slots:
 		if slot.can_add(item, remaining):
@@ -32,11 +32,11 @@ func add_item(item: ItemData, amount: int = 1) -> bool:
 
 
 func remove_item(item: ItemData, amount: int = 1) -> bool:
-	var remaining := amount
+	var remaining: int = amount
 	
 	for slot in slots:
 		if slot.item_data == item:
-			var removed := slot.remove(remaining)
+			var removed: int = slot.remove(remaining)
 			remaining -= removed
 			if remaining <= 0:
 				inventory_changed.emit()
@@ -46,7 +46,7 @@ func remove_item(item: ItemData, amount: int = 1) -> bool:
 
 
 func get_item_count(item: ItemData) -> int:
-	var count := 0
+	var count: int = 0
 	for slot in slots:
 		if slot.item_data == item:
 			count += slot.quantity
@@ -57,7 +57,7 @@ func use_item(slot_index: int) -> bool:
 	if slot_index < 0 or slot_index >= slots.size():
 		return false
 	
-	var slot := slots[slot_index]
+	var slot: InventorySlot = slots[slot_index]
 	if slot.is_empty() or not slot.item_data.is_consumable:
 		return false
 	

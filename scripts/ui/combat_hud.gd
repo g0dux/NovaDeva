@@ -24,7 +24,7 @@ func _connect_to_player() -> void:
 	if not GameManager.player:
 		return
 	
-	var stats := GameManager.player.get_node_or_null("StatsComponent") as StatsComponent
+	var stats: StatsComponent = GameManager.player.get_node_or_null("StatsComponent") as StatsComponent
 	if stats:
 		stats.health_changed.connect(_on_health_changed)
 		stats.stamina_changed.connect(_on_stamina_changed)

@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 		_stamina_regen_timer -= delta
 	
 	if _stamina_regen_timer <= 0 and current_stamina < max_stamina:
-		var old_stamina := current_stamina
+		var old_stamina: float = current_stamina
 		current_stamina = min(current_stamina + stamina_regen_rate * delta, max_stamina)
 		if current_stamina != old_stamina:
 			stamina_changed.emit(current_stamina, max_stamina)

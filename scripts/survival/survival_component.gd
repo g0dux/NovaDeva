@@ -44,7 +44,7 @@ func _tick_survival() -> void:
 
 
 func _update_hunger(new_value: float) -> void:
-	var old_hunger := current_hunger
+	var old_hunger: float = current_hunger
 	current_hunger = clamp(new_value, 0.0, max_hunger)
 	
 	if current_hunger != old_hunger:
@@ -52,7 +52,7 @@ func _update_hunger(new_value: float) -> void:
 
 
 func _update_thirst(new_value: float) -> void:
-	var old_thirst := current_thirst
+	var old_thirst: float = current_thirst
 	current_thirst = clamp(new_value, 0.0, max_thirst)
 	
 	if current_thirst != old_thirst:
@@ -64,15 +64,15 @@ func _apply_survival_effects() -> void:
 		return
 	
 	if current_hunger < 25:
-		var penalty := 0.85 if current_hunger >= 10 else 0.70
+		var penalty: float = 0.85 if current_hunger >= 10 else 0.70
 		survival_effect.emit("low_hunger")
 	
 	if current_thirst < 25:
-		var penalty := 0.80 if current_thirst >= 10 else 0.50
+		var penalty: float = 0.80 if current_thirst >= 10 else 0.50
 		survival_effect.emit("low_thirst")
 	
 	if current_thirst < 10:
-		var damage := DamageInfo.new(1.0, &"decay", 0.0, Vector3.ZERO, null)
+		var damage: DamageInfo = DamageInfo.new(1.0, &"decay", 0.0, Vector3.ZERO, null)
 		stats.apply_damage(damage)
 
 

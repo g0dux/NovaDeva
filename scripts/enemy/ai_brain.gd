@@ -60,7 +60,7 @@ func _process_alert(delta: float) -> void:
 		_change_state(State.IDLE)
 		return
 	
-	var distance := enemy.global_position.distance_to(target.global_position)
+	var distance: float = enemy.global_position.distance_to(target.global_position)
 	
 	if distance > detection_range * 1.5:
 		_change_state(State.IDLE)
@@ -79,7 +79,7 @@ func _process_combat(delta: float) -> void:
 		_change_state(State.IDLE)
 		return
 	
-	var distance := enemy.global_position.distance_to(target.global_position)
+	var distance: float = enemy.global_position.distance_to(target.global_position)
 	
 	if distance > attack_range * 2.0:
 		_change_state(State.ALERT)
@@ -105,7 +105,7 @@ func _check_for_player() -> void:
 	if not GameManager.player:
 		return
 	
-	var distance := enemy.global_position.distance_to(GameManager.player.global_position)
+	var distance: float = enemy.global_position.distance_to(GameManager.player.global_position)
 	
 	if distance <= detection_range:
 		target = GameManager.player
@@ -116,16 +116,16 @@ func _move_towards_target(delta: float) -> void:
 	if not target or not enemy:
 		return
 	
-	var direction := (target.global_position - enemy.global_position).normalized()
+	var direction: Vector3 = (target.global_position - enemy.global_position).normalized()
 	direction.y = 0
 	
 	if direction.length() > 0:
 		enemy.velocity.x = direction.x * move_speed
 		enemy.velocity.z = direction.z * move_speed
 		
-		var look_direction := Vector3(direction.x, 0, direction.z)
+		var look_direction: Vector3 = Vector3(direction.x, 0, direction.z)
 		if look_direction.length() > 0:
-			var target_transform := Transform3D().looking_at(look_direction, Vector3.UP)
+			var target_transform: Transform3D = Transform3D().looking_at(look_direction, Vector3.UP)
 			enemy.transform.basis = enemy.transform.basis.slerp(target_transform.basis, delta * 5.0)
 
 

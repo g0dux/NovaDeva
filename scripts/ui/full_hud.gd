@@ -42,21 +42,21 @@ func _connect_to_player() -> void:
 	if not GameManager.player:
 		return
 	
-	var stats := GameManager.player.get_node_or_null("StatsComponent") as StatsComponent
+	var stats: StatsComponent = GameManager.player.get_node_or_null("StatsComponent") as StatsComponent
 	if stats:
 		stats.health_changed.connect(_on_health_changed)
 		stats.stamina_changed.connect(_on_stamina_changed)
 		_on_health_changed(stats.current_health, stats.max_health)
 		_on_stamina_changed(stats.current_stamina, stats.max_stamina)
 	
-	var survival := GameManager.player.get_node_or_null("SurvivalComponent") as SurvivalComponent
+	var survival: SurvivalComponent = GameManager.player.get_node_or_null("SurvivalComponent") as SurvivalComponent
 	if survival:
 		survival.hunger_changed.connect(_on_hunger_changed)
 		survival.thirst_changed.connect(_on_thirst_changed)
 		_on_hunger_changed(survival.current_hunger, survival.max_hunger)
 		_on_thirst_changed(survival.current_thirst, survival.max_thirst)
 	
-	var inventory := GameManager.player.get_node_or_null("InventoryComponent") as InventoryComponent
+	var inventory: InventoryComponent = GameManager.player.get_node_or_null("InventoryComponent") as InventoryComponent
 	if inventory:
 		inventory.inventory_changed.connect(_on_inventory_changed)
 		_update_inventory_ui(inventory)
@@ -116,7 +116,7 @@ func _on_inventory_changed() -> void:
 	if not GameManager.player:
 		return
 	
-	var inventory := GameManager.player.get_node_or_null("InventoryComponent") as InventoryComponent
+	var inventory: InventoryComponent = GameManager.player.get_node_or_null("InventoryComponent") as InventoryComponent
 	if inventory:
 		_update_inventory_ui(inventory)
 
@@ -136,8 +136,8 @@ func _update_inventory_ui(inventory: InventoryComponent) -> void:
 		child.queue_free()
 	
 	for i in range(inventory.slot_count):
-		var slot := inventory.get_slot(i)
-		var button := Button.new()
+		var slot: InventorySlot = inventory.get_slot(i)
+		var button: Button = Button.new()
 		button.custom_minimum_size = Vector2(60, 60)
 		
 		if slot and not slot.is_empty():
@@ -154,6 +154,6 @@ func _on_inventory_slot_pressed(slot_index: int) -> void:
 	if not GameManager.player:
 		return
 	
-	var inventory := GameManager.player.get_node_or_null("InventoryComponent") as InventoryComponent
+	var inventory: InventoryComponent = GameManager.player.get_node_or_null("InventoryComponent") as InventoryComponent
 	if inventory:
 		inventory.use_item(slot_index)

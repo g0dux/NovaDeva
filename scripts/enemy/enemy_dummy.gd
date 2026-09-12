@@ -49,7 +49,7 @@ func _flash_damage() -> void:
 	if not mesh:
 		return
 	
-	var material := StandardMaterial3D.new()
+	var material: StandardMaterial3D = StandardMaterial3D.new()
 	material.albedo_color = Color(1, 0.5, 0.5)
 	mesh.set_surface_override_material(0, material)
 	hit_flash_timer = 0.2

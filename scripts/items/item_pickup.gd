@@ -44,7 +44,7 @@ func _pickup() -> void:
 	if not player_in_range or not item_data:
 		return
 	
-	var inventory := player_in_range.get_node_or_null("InventoryComponent") as InventoryComponent
+	var inventory: InventoryComponent = player_in_range.get_node_or_null("InventoryComponent") as InventoryComponent
 	if inventory and inventory.add_item(item_data, quantity):
 		print("Coletou: %s x%d" % [item_data.item_name, quantity])
 		queue_free()

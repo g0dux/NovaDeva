@@ -32,8 +32,8 @@ func add(item: ItemData, amount: int = 1) -> int:
 		return 0
 	
 	if item_data == item:
-		var space_left := item_data.max_stack - quantity
-		var added := min(amount, space_left)
+		var space_left: int = item_data.max_stack - quantity
+		var added: int = min(amount, space_left)
 		quantity += added
 		return amount - added
 	
@@ -41,7 +41,7 @@ func add(item: ItemData, amount: int = 1) -> int:
 
 
 func remove(amount: int = 1) -> int:
-	var removed := min(amount, quantity)
+	var removed: int = min(amount, quantity)
 	quantity -= removed
 	
 	if quantity <= 0:
