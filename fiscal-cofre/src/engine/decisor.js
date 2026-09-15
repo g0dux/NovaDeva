@@ -120,7 +120,7 @@ export function decidirRegime(entrada) {
 
   // Ajustes transversais
   if (entrada.vendePara === 'cnpj' || entrada.vendePara === 'ambos') {
-    if (!fazer.some((f) => f.toLowerCase().includes('nota'))) {
+    if (!fazer.some((f) => /nota/i.test(f))) {
       fazer.push('Para cliente PJ, trate nota como padrão e armazene o XML.')
     }
   }
